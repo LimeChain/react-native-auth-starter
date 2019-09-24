@@ -57,3 +57,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Generated folders from command `react-native upgrade --legacy true`
+/ios
+/android

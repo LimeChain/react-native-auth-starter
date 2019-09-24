@@ -38,8 +38,8 @@ Project created with https://github.com/react-native-community/react-native-temp
 2. Go to project's root directory, `cd <your project name>`
 3. Remove `.git` folder, `rm -rf .git`
 4. Open `package.json` and change the `name` property with your project name
-5. Open `index.js` and replace `'ReactNativeTsStarter'` by your project name
-6. Open `app.json` and replace `'ReactNativeTsStarter'` by your project name
+5. Open `index.js` and replace `'react-native-auth-starter'` by your project name
+6. Open `app.json` and replace `'react-native-auth-starter'` by your project name
 
 7. Run `npm install` to install dependencies
 

@@ -51,13 +51,15 @@ Project created with https://github.com/react-native-community/react-native-temp
 
 9. Run `react-native link react-native-gesture-handler`
 
-10. Latest versions of react-naviagtion uses gesture handler which is native module. For android you have to do some additional steps to configure them. Follow [these instructions](https://reactnavigation.org/docs/en/getting-started.html)
+10. Install Cocoapods: https://cocoapods.org/
 
-## FYI: Navigation should work fine even without these but when u need gestures or drawer navigation you need this setup
+11. Navigate to /ios folder and execute `pod install`
 
-11. Start the packager with `npm start`
-12. Connect a mobile device to your development machine
-13. Run the test application:
+12. Back in the project root folder and start the packager with `npm start`
+
+13. Connect a mobile device to your development machine
+
+14. Run the test application:
 
 - On Android:
   - Run `react-native run-android`

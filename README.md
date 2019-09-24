@@ -43,7 +43,7 @@ Project created with https://github.com/react-native-community/react-native-temp
 
 7. Run `npm install` to install dependencies
 
-8. Run `react-native eject` to upgrade and add iOS & Android Folders.
+8. Run `react-native upgrade --legacy true` to upgrade and add iOS & Android Folders and don't allow the tool to update your config files.
 
 9. Run `react-native link react-native-gesture-handler`
 

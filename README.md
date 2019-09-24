@@ -32,10 +32,6 @@ Starter project for React Native mobile application with Home, Login and Registe
 
 Project created with https://github.com/react-native-community/react-native-template-typescript
 
-## Features
-
-- [React Navigation](https://reactnavigation.org/)
-
 ## Getting Started
 
 1. Clone this repo, `Github URL`

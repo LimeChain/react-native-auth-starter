@@ -47,17 +47,15 @@ Project created with https://github.com/react-native-community/react-native-temp
 
 8. Run `react-native upgrade --legacy true` to upgrade and add iOS & Android Folders and don't allow the tool to update your config files.
 
-9. Run `react-native link react-native-gesture-handler`
+9. Install Cocoapods: https://cocoapods.org/
 
-10. Install Cocoapods: https://cocoapods.org/
+10. Navigate to /ios folder and execute `pod install`
 
-11. Navigate to /ios folder and execute `pod install`
+11. Back in the project root folder and start the packager with `npm start`
 
-12. Back in the project root folder and start the packager with `npm start`
+12. Connect a mobile device to your development machine
 
-13. Connect a mobile device to your development machine
-
-14. Run the test application:
+13. Run the test application:
 
 - On Android:
   - Run `react-native run-android`

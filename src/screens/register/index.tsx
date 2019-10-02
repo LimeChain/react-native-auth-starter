@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  GestureResponderEvent,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {GestureResponderEvent, View} from 'react-native';
 
 import {observer, inject} from 'mobx-react';
 import UserStore from '../../stores/UserStore';
@@ -18,6 +12,7 @@ import Button from '../../components/fields/Button';
 import {ROUTES} from '../../util/util';
 import {FormFieldChange} from '../../stores/FormStore';
 import RegisterFormStore from '../../stores/RegisterFormStore';
+import {NavigationActions} from 'react-navigation';
 
 /**
  * The Register screen
@@ -34,18 +29,22 @@ export class RegisterScreen extends Component<Props> {
     super(props);
   }
 
-  handleEmailChange = (email: string) => {
-    this.props.userStore.setEmail(email);
-  };
-
-  handlePasswordChange = (password: string) =>
-    this.props.userStore.setPassword(password);
-
   handleRegister = (event: GestureResponderEvent) => {
     event.preventDefault();
-    this.props.userStore
-      .register()
-      .then(() => console.log('userStore.register called'));
+    if (this.props.registerFormStore.isFormValid()) {
+      this.props.registerFormStore
+        .register()
+        .then(() => {
+          this.props.navigation.dispatch(
+            NavigationActions.navigate({
+              routeName: ROUTES.AuthLoading,
+            }),
+          );
+        })
+        .catch(err => {
+          console.log('Error while trying to register!', err);
+        });
+    }
   };
 
   static navigationOptions = (
@@ -58,8 +57,6 @@ export class RegisterScreen extends Component<Props> {
 
   render() {
     const {registerFormStore} = this.props;
-    console.log('this.props', this.props);
-    console.log('registerFormStore', registerFormStore);
     return (
       <View>
         <RegisterForm

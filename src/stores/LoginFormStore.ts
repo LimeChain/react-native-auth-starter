@@ -53,8 +53,6 @@ class LoginFormStore extends FormStore {
         this.form.meta.isLoadingSubmit = false;
         throw err;
       });
-
-    console.log('LoginFormStore.login - END');
   }
 }
 export default LoginFormStore;

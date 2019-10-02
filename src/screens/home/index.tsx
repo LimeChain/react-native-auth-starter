@@ -22,7 +22,6 @@ export class HomeScreen extends Component<NavigationStackScreenProps> {
   ): NavigationStackOptions => {
     // Open drawer view
     const _buttonleftPress = (event: GestureResponderEvent) => {
-      console.log('Home headerLeft button pressed!');
       screenProps.navigation.toggleDrawer();
     };
 

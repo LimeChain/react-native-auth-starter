@@ -1,20 +1,13 @@
 import React, {Component} from 'react';
-import {
-  GestureResponderEvent,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {GestureResponderEvent, View} from 'react-native';
 
 import {
   NavigationStackOptions,
   NavigationStackScreenProps,
 } from 'react-navigation-stack';
-import {observer, inject} from 'mobx-react';
 import UserStore from '../../stores/UserStore';
 import LoginFormStore from '../../stores/LoginFormStore';
-import FormStore, {FormFieldChange} from '../../stores/FormStore';
+import {FormFieldChange} from '../../stores/FormStore';
 import LoginForm from '../../components/forms/LoginForm';
 import Button from '../../components/fields/Button';
 import {NavigationActions} from 'react-navigation';
@@ -35,29 +28,22 @@ export class LoginScreen extends Component<Props> {
     super(props);
   }
 
-  navigateToScreen = (screen: string) => {
-    const navigate = NavigationActions.navigate({
-      routeName: ROUTES.AuthLoading,
-    });
-    this.props.navigation.dispatch(navigate);
-  };
-
   handleLogin = (event: GestureResponderEvent) => {
-    console.log('LoginScreen.handleLogin BEGIN');
     event.preventDefault();
     if (this.props.loginFormStore.isFormValid()) {
       this.props.loginFormStore
         .login()
         .then(() => {
-          this.navigateToScreen(ROUTES.AuthLoading);
-          console.log('LoginScreen.login.then section');
+          this.props.navigation.dispatch(
+            NavigationActions.navigate({
+              routeName: ROUTES.AuthLoading,
+            }),
+          );
         })
         .catch(err => {
-          console.log('LOG ERRRRRRRROR');
+          console.log('Error while trying to login!', err);
         });
     }
-
-    console.log('LoginScreen.handleLogin END');
   };
 
   static navigationOptions = (
@@ -70,8 +56,6 @@ export class LoginScreen extends Component<Props> {
 
   render() {
     const {loginFormStore} = this.props;
-    console.log('this.props', this.props);
-    console.log('loginFormStore', loginFormStore);
     return (
       <View>
         <LoginForm onSubmit={this.handleLogin} formStore={loginFormStore} />

@@ -5,7 +5,6 @@ import Button from '../fields/Button';
 import FormStyle from '../../styles/theme.forms';
 import {observer} from 'mobx-react';
 import LoginFormStore from '../../stores/LoginFormStore';
-import {FormFieldChange} from '../../stores/FormStore';
 
 export interface Props extends ViewProps {
   onSubmit: (event: GestureResponderEvent) => void;

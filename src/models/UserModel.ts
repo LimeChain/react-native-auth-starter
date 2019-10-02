@@ -9,7 +9,6 @@ export default class UserModel {
   ) {}
 
   static adapt(item: LoginResData): UserModel {
-    console.log('item', item);
     return new UserModel(item.token);
   }
 }

@@ -19,8 +19,6 @@ YellowBox.ignoreWarnings([
   'Warning: componentWillReceiveProps is deprecated',
 ]);
 
-console.log('stores', stores);
-
 const MobX = () => (
   <Provider {...stores}>
     <App />

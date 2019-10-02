@@ -43,18 +43,15 @@ class RegisterFormStore extends FormStore {
   }
 
   @action async register() {
-    console.log('RegisterFormStore.login - BEGIN');
     this.form.meta.isLoadingSubmit = true;
     await authService
       .register(this.form.fields.email.value, this.form.fields.password.value)
       .then(response => {
         let resData: RegisterResData = response.data;
         let userModel = UserModel.adapt(resData);
-        console.log('RegisterFormStore.login.then');
         runInAction(() => {
           AsyncStorage.setItem(STORAGE_KEY.AuthToken, userModel.authToken);
           this.form.meta.isLoadingSubmit = false;
-          console.log('RegisterFormStore.login.then -> runInAction');
         });
       })
       .catch(err => {
@@ -62,8 +59,6 @@ class RegisterFormStore extends FormStore {
         this.form.meta.isLoadingSubmit = false;
         throw err;
       });
-
-    console.log('RegisterFormStore.login - END');
   }
 }
 export default RegisterFormStore;

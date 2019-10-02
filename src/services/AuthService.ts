@@ -24,10 +24,7 @@ class AuthService {
     email?: string,
     password?: string,
   ): Promise<ApiResponseObj<LoginResData>> {
-    console.log('AuthService.login - BEGIN');
     try {
-      console.log('AuthService.login - END');
-
       return API.post(this.loginBaseUrl, {
         email: email,
         password: password,
@@ -43,9 +40,6 @@ class AuthService {
     password?: string,
   ): Promise<ApiResponseObj<RegisterResData>> {
     try {
-      console.log('email ->', email);
-      console.log('password ->', password);
-
       return API.post(this.registerBaseUrl, {
         email: email,
         password: password,

@@ -8,16 +8,9 @@ export interface Props {
 }
 
 class App extends React.Component<Props> {
-  //constructor(props: Props) {
-  //  super(props);
-  //  console.log('App constructor');
-  //  console.log(this.props.userStore);
-  //}
-
   render() {
     return <AppContainer />;
   }
 }
 
-//export default inject('userStore')(observer(App));
 export default App;

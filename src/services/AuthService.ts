@@ -1,4 +1,5 @@
-import {API, ApiResponseData, ApiResponseObj} from '../util/util';
+import {API, ApiResponseData, ApiResponseObj, STORAGE_KEY} from '../util/util';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export interface LoginResData extends ApiResponseData {
   token: string;
@@ -11,16 +12,23 @@ export interface RegisterResData extends ApiResponseData {
 
 class AuthService {
   constructor(
-    private loginBaseUrl = '/api/login',
+    private loginBaseUrl = '/api/login?delay=3',
     private registerBaseUrl = '/api/register',
   ) {}
 
-  async login(
+  async logout(): Promise<void> {
+    AsyncStorage.removeItem(STORAGE_KEY.AuthToken);
+  }
+
+  login(
     email?: string,
     password?: string,
   ): Promise<ApiResponseObj<LoginResData>> {
+    console.log('AuthService.login - BEGIN');
     try {
-      return await API.post(this.loginBaseUrl, {
+      console.log('AuthService.login - END');
+
+      return API.post(this.loginBaseUrl, {
         email: email,
         password: password,
       });
@@ -30,12 +38,15 @@ class AuthService {
     }
   }
 
-  async register(
+  register(
     email?: string,
     password?: string,
   ): Promise<ApiResponseObj<RegisterResData>> {
     try {
-      return await API.post(this.registerBaseUrl, {
+      console.log('email ->', email);
+      console.log('password ->', password);
+
+      return API.post(this.registerBaseUrl, {
         email: email,
         password: password,
       });

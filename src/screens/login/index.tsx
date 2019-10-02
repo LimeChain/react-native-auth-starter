@@ -6,37 +6,62 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
-import {NavigationStackOptions} from 'react-navigation-stack';
+
+import {
+  NavigationStackOptions,
+  NavigationStackScreenProps,
+} from 'react-navigation-stack';
 import {observer, inject} from 'mobx-react';
 import UserStore from '../../stores/UserStore';
+import LoginFormStore from '../../stores/LoginFormStore';
+import FormStore, {FormFieldChange} from '../../stores/FormStore';
+import LoginForm from '../../components/forms/LoginForm';
+import Button from '../../components/fields/Button';
+import {NavigationActions} from 'react-navigation';
+import {ROUTES} from '../../util/util';
 
 /**
  * The Login screen
  */
 
-export interface Props extends NavigationScreenProps {
+export interface Props extends NavigationStackScreenProps {
   userStore: UserStore;
+  loginFormStore: LoginFormStore;
+  onChange: FormFieldChange;
 }
+
 export class LoginScreen extends Component<Props> {
   constructor(props: Props) {
     super(props);
   }
 
-  handleEmailChange = (email: string) => {
-    this.props.userStore.setEmail(email);
+  navigateToScreen = (screen: string) => {
+    const navigate = NavigationActions.navigate({
+      routeName: ROUTES.AuthLoading,
+    });
+    this.props.navigation.dispatch(navigate);
   };
 
-  handlePasswordChange = (password: string) =>
-    this.props.userStore.setPassword(password);
-
   handleLogin = (event: GestureResponderEvent) => {
+    console.log('LoginScreen.handleLogin BEGIN');
     event.preventDefault();
-    this.props.userStore.login().then(() => alert('1234567890!!!!!!!!!'));
+    if (this.props.loginFormStore.isFormValid()) {
+      this.props.loginFormStore
+        .login()
+        .then(() => {
+          this.navigateToScreen(ROUTES.AuthLoading);
+          console.log('LoginScreen.login.then section');
+        })
+        .catch(err => {
+          console.log('LOG ERRRRRRRROR');
+        });
+    }
+
+    console.log('LoginScreen.handleLogin END');
   };
 
   static navigationOptions = (
-    screenProps: NavigationScreenProps,
+    screenProps: NavigationStackScreenProps,
   ): NavigationStackOptions => {
     return {
       headerTitle: 'Login Screen',
@@ -44,24 +69,19 @@ export class LoginScreen extends Component<Props> {
   };
 
   render() {
+    const {loginFormStore} = this.props;
+    console.log('this.props', this.props);
+    console.log('loginFormStore', loginFormStore);
     return (
       <View>
-        <Text>{this.props.userStore.user.authToken}</Text>
-        <Text>{this.props.userStore.user.email}</Text>
-
-        <TextInput onChangeText={this.handleEmailChange} placeholder="Email" />
-
-        <TextInput
-          onChangeText={this.handlePasswordChange}
-          placeholder="Password"
+        <LoginForm onSubmit={this.handleLogin} formStore={loginFormStore} />
+        <Button
+          btnName="Registration"
+          submit={() => this.props.navigation.navigate(ROUTES.MainRegister)}
         />
-
-        <TouchableOpacity>
-          <Text onPress={this.handleLogin}>Login</Text>
-        </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default inject('userStore')(observer(LoginScreen));
+export default LoginScreen;

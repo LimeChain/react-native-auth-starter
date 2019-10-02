@@ -4,28 +4,30 @@
 
 <p>
   <a href="https://reactjs.org/blog/2019/02/06/react-v16.8.0.html">
-    <img alt="Build Status" src="https://img.shields.io/badge/react-16.8.6-blue.svg" target="_blank" />
+    <img alt="React" src="https://img.shields.io/badge/react-16.8.6-blue.svg" target="_blank" />
   </a>
   <a href="https://facebook.github.io/react-native/docs/getting-started">
-    <img alt="Build Status" src="https://img.shields.io/badge/react--native-0.60.5-blue.svg" target="_blank" />
+    <img alt="React Native" src="https://img.shields.io/badge/react--native-0.60.5-blue.svg" target="_blank" />
   </a>
   <a href="https://reactnavigation.org/docs/en/getting-started.html">
-    <img alt="Build Status" src="https://img.shields.io/badge/react--navigation-4.0.5-blue.svg" target="_blank" />
+    <img alt="React Navigation" src="https://img.shields.io/badge/react--navigation-4.0.5-blue.svg" target="_blank" />
   </a>
   <a href="https://www.npmjs.com/package/axios">
-    <img alt="Build Status" src="https://img.shields.io/badge/axios-0.19.0-blue.svg" target="_blank" />
+    <img alt="Axios" src="https://img.shields.io/badge/axios-0.19.0-blue.svg" target="_blank" />
   </a>
   <a href="https://www.npmjs.com/package/mobx">
-    <img alt="Build Status" src="https://img.shields.io/badge/mobx-5.13.0-blue.svg" target="_blank" />
+    <img alt="MobX" src="https://img.shields.io/badge/mobx-5.13.0-blue.svg" target="_blank" />
   </a>
-
   <a href="https://www.npmjs.com/package/mobx-react">
-    <img alt="Build Status" src="https://img.shields.io/badge/mobx--react-6.1.3-blue.svg" target="_blank" />
+    <img alt="MobX React" src="https://img.shields.io/badge/mobx--react-6.1.3-blue.svg" target="_blank" />
+  </a>
+  <a href="https://www.typescriptlang.org/">
+    <img alt="Typescript" src="https://img.shields.io/badge/typescript-3.6.3-blue.svg" target="_blank" />
+  </a>
+  <a href="https://foxhound87.github.io/mobx-react-form//">
+    <img alt="MobX React Form" src="https://img.shields.io/badge/mobx--react--form-2.0.5-blue.svg" target="_blank" />
   </a>
 
-  <a href="https://www.typescriptlang.org/">
-    <img alt="Build Status" src="https://img.shields.io/badge/typescript-3.6.3-blue.svg" target="_blank" />
-  </a>
 </p>
 
 Starter project for React Native mobile application with Home, Login and Register pages.

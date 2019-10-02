@@ -1,10 +1,12 @@
 import {observable, action, runInAction} from 'mobx';
 import UserModel from '../models/UserModel';
+import {STORAGE_KEY} from '../util/util';
 import {
   authService,
   LoginResData,
   RegisterResData,
 } from '../services/AuthService';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class UserStore {
   @observable isLoading: boolean = true;
@@ -28,9 +30,10 @@ export default class UserStore {
     authService.login(this.user.email, this.user.password).then(response => {
       let resData: LoginResData = response.data;
       let userModel = UserModel.adapt(resData);
-      runInAction(() => {
+      runInAction(async () => {
         this.isLoading = false;
         this.user = userModel;
+        AsyncStorage.setItem(STORAGE_KEY.AuthToken, userModel.authToken);
       });
     });
   }

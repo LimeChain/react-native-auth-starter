@@ -13,3 +13,18 @@ export interface ApiResponseObj<T = ApiResponseData> extends AxiosResponse<T> {}
 
 // Export ApiResponse as a return type of any API request.
 export interface ApiResponse extends Promise<any> {}
+
+export enum STORAGE_KEY {
+  AuthToken = 'AuthToken',
+}
+
+export enum ROUTES {
+  MainHome = 'MainHome',
+  MainLogin = 'MainLogin',
+  MainRegister = 'MainRegister',
+
+  AuthLoading = 'AuthLoading',
+
+  AppStack = 'AppStack',
+  AuthStack = 'AuthStack',
+}

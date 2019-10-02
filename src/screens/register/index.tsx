@@ -6,17 +6,27 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
+
 import {observer, inject} from 'mobx-react';
 import UserStore from '../../stores/UserStore';
-import {NavigationStackOptions} from 'react-navigation-stack';
+import {
+  NavigationStackOptions,
+  NavigationStackScreenProps,
+} from 'react-navigation-stack';
+import RegisterForm from '../../components/forms/RegisterForm';
+import Button from '../../components/fields/Button';
+import {ROUTES} from '../../util/util';
+import {FormFieldChange} from '../../stores/FormStore';
+import RegisterFormStore from '../../stores/RegisterFormStore';
 
 /**
  * The Register screen
  */
 
-export interface Props extends NavigationScreenProps {
+export interface Props extends NavigationStackScreenProps {
   userStore: UserStore;
+  registerFormStore: RegisterFormStore;
+  onChange: FormFieldChange;
 }
 
 export class RegisterScreen extends Component<Props> {
@@ -33,11 +43,13 @@ export class RegisterScreen extends Component<Props> {
 
   handleRegister = (event: GestureResponderEvent) => {
     event.preventDefault();
-    this.props.userStore.register().then(() => alert('1234567890!!!!!!!!!'));
+    this.props.userStore
+      .register()
+      .then(() => console.log('userStore.register called'));
   };
 
   static navigationOptions = (
-    screenProps: NavigationScreenProps,
+    screenProps: NavigationStackScreenProps,
   ): NavigationStackOptions => {
     return {
       headerTitle: 'Register Screen',
@@ -45,21 +57,19 @@ export class RegisterScreen extends Component<Props> {
   };
 
   render() {
+    const {registerFormStore} = this.props;
+    console.log('this.props', this.props);
+    console.log('registerFormStore', registerFormStore);
     return (
       <View>
-        <Text>{this.props.userStore.user.authToken}</Text>
-        <Text>{this.props.userStore.user.email}</Text>
-
-        <TextInput onChangeText={this.handleEmailChange} placeholder="Email" />
-
-        <TextInput
-          onChangeText={this.handlePasswordChange}
-          placeholder="Password"
+        <RegisterForm
+          onSubmit={this.handleRegister}
+          formStore={registerFormStore}
         />
-
-        <TouchableOpacity>
-          <Text onPress={this.handleRegister}>Register</Text>
-        </TouchableOpacity>
+        <Button
+          btnName="Login"
+          submit={() => this.props.navigation.navigate(ROUTES.MainLogin)}
+        />
       </View>
     );
   }

@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {
   GestureResponderEvent,
   Button,
@@ -6,17 +6,19 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
-import {NavigationStackOptions} from 'react-navigation-stack';
+import {
+  NavigationStackOptions,
+  NavigationStackScreenProps,
+} from 'react-navigation-stack';
 
 /**
  * The Home screen
  */
-export class HomeScreen extends PureComponent<NavigationScreenProps> {
+export class HomeScreen extends Component<NavigationStackScreenProps> {
   // screen navigation options
 
   static navigationOptions = (
-    screenProps: NavigationScreenProps,
+    screenProps: NavigationStackScreenProps,
   ): NavigationStackOptions => {
     // Open drawer view
     const _buttonleftPress = (event: GestureResponderEvent) => {

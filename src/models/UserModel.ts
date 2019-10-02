@@ -2,7 +2,7 @@ import {LoginResData} from '../services/AuthService';
 
 export default class UserModel {
   constructor(
-    public authToken?: string,
+    public authToken: string = '',
     public name?: string,
     public email?: string,
     public password?: string,
